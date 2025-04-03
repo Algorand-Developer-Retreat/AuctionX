@@ -57,7 +57,30 @@ class AuctionX(ARC4Contract):
         self.highest_bid = bid_payment.amount
         self.highest_bidder = Txn.sender
 
+    # Accept the highest bid
+    @abimethod()
+    def accept_bid(self) -> None:
+        assert Txn.sender == Global.creator_address
+        assert self.highest_bidder != Account("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ")
 
+        # Transfer the asset to the highest bidder
+        itxn.AssetTransfer(
+            xfer_asset=self.assetid,
+            asset_receiver=self.highest_bidder,
+            asset_amount=1,  # Assuming the asset is non-fungible (1 unit)
+            fee=1_000,
+        ).submit()
+
+        # Transfer the funds to the market creator
+        itxn.Payment(
+            receiver=Global.creator_address,
+            amount=self.highest_bid,
+            fee=1_000,
+        ).submit()
+
+        # Reset the highest bid and bidder
+        self.highest_bid = UInt64(0)
+        self.highest_bidder = Account("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ")
 
  
 
