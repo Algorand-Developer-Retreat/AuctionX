@@ -1,6 +1,9 @@
 import { SupportedWallet, WalletId, WalletManager, WalletProvider } from '@txnlab/use-wallet-react'
 import { SnackbarProvider } from 'notistack'
 import Home from './pages/Home'
+import Auction from './pages/Auction'
+import CreateAuction from './pages/CreateAuction'
+import MyBids from './pages/MyBids'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Navbar from "./components/Navbar"
 import Footer from "./components/Footer"
@@ -61,9 +64,9 @@ export default function App() {
           <main className="flex-1">
             <Routes>
               <Route path="/" element={<Home />} />
-              {/* <Route path="/auction/:id" element={<Auction />} />
+              <Route path="/auction/:id" element={<Auction />} />
               <Route path="/create" element={<CreateAuction />} />
-              <Route path="/my-bids" element={<MyBids />} /> */}
+              <Route path="/my-bids" element={<MyBids />} />
             </Routes>
           </main>
           <Footer />
