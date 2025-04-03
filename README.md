@@ -1,4 +1,4 @@
-# **AuctionX - Algorand Asset Auction Platform**  
+# **AuctionX - Asset Auction Platform on Algorand**  
 
 **AuctionX** is a **decentralized auction platform** built with **AlgoKit**, enabling secure, on-chain auctions for **any Algorand Standard Asset (ASA)**—NFTs, tokens, or real-world asset representations.  
 
