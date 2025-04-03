@@ -82,5 +82,46 @@ class AuctionX(ARC4Contract):
         self.highest_bid = UInt64(0)
         self.highest_bidder = Account("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ")
 
- 
+    # Reject the highest bid and refund the bidder
+    @abimethod()
+    def reject_bid(self) -> None:
+        assert Txn.sender == Global.creator_address
+        assert self.highest_bidder != Account("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ")
 
+        # Refund the highest bidder
+        itxn.Payment(
+            receiver=self.highest_bidder,
+            amount=self.highest_bid,
+            fee=1_000,
+        ).submit()
+
+        # Reset the highest bid and bidder
+        self.highest_bid = UInt64(0)
+        self.highest_bidder = Account("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ")
+
+    # Delete the app & take your assets and profit back
+    @abimethod(allow_actions=["DeleteApplication"])
+    def delete_application(self) -> None:
+        # Only allow the creator to delete the application
+        assert Txn.sender == Global.creator_address
+
+        # Send all the unsold assets to the creator
+        itxn.AssetTransfer(
+            xfer_asset=self.assetid,
+            asset_receiver=Global.creator_address,
+            # The amount is 0, but the asset_close_to field is set
+            # This means that ALL assets are being sent to the asset_close_to address
+            asset_amount=0,
+            # Close the asset to unlock the 0.1 ALGO that was locked in opt_in_to_asset
+            asset_close_to=Global.creator_address,
+            fee=1_000,
+        ).submit()
+
+        # Send the remaining balance to the creator
+        itxn.Payment(
+            receiver=Global.creator_address,
+            amount=0,
+            # Close the account to get back ALL the ALGO in the account
+            close_remainder_to=Global.creator_address,
+            fee=1_000,
+        ).submit()
