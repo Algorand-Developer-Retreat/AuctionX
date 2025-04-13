@@ -134,7 +134,7 @@ main_set_floor_price_route@4:
 main_create_application_route@3:
     // smart_contracts/auction_x/contract.py:11-12
     // # Create the app
-    // @abimethod(allow_actions=["NoOp"], create="require")
+    // @abimethod(allow_actions=["NoOp"], create = "require")
     txn OnCompletion
     !
     assert // OnCompletion is not NoOp
@@ -150,7 +150,7 @@ main_create_application_route@3:
     btoi
     // smart_contracts/auction_x/contract.py:11-12
     // # Create the app
-    // @abimethod(allow_actions=["NoOp"], create="require")
+    // @abimethod(allow_actions=["NoOp"], create = "require")
     callsub create_application
     intc_1 // 1
     return
@@ -160,7 +160,7 @@ main_create_application_route@3:
 create_application:
     // smart_contracts/auction_x/contract.py:11-13
     // # Create the app
-    // @abimethod(allow_actions=["NoOp"], create="require")
+    // @abimethod(allow_actions=["NoOp"], create = "require")
     // def create_application(self, asset_id: Asset, floor_price: UInt64) -> None:
     proto 2 0
     // smart_contracts/auction_x/contract.py:14
