@@ -22,7 +22,7 @@ const mockAuctions = [
     highestBid: 150,
     highestBidder: "ALGO123...XYZ",
     endTime: new Date(Date.now() + 86400000 * 2), // 2 days from now
-    image: "/placeholder.svg?height=400&width=400",
+    image: "https://res.cloudinary.com/dmebegin1/image/upload/v1743961648/Cosmic_Voyager_final_fhplnq.jpg",
     creator: "ALGO456...ABC",
     category: "art",
   },
@@ -35,20 +35,20 @@ const mockAuctions = [
     highestBid: 250,
     highestBidder: "ALGO789...DEF",
     endTime: new Date(Date.now() + 86400000 * 3), // 3 days from now
-    image: "/placeholder.svg?height=400&width=400",
+    image: "https://res.cloudinary.com/dmebegin1/image/upload/v1743961638/76f5c4d9-06a5-4730-b099-9bdef4c854f0_gzbdgk.jpg",
     creator: "ALGO456...ABC",
     category: "collectible",
   },
   {
     id: "3",
-    title: "Virtual Land Plot #1337",
-    description: "Prime location in the Algorand Metaverse",
+    title: "Land Plot #1337",
+    description: "Prime location in the Algorand Metaverse - soon coming",
     assetId: "13371337",
     floorPrice: 500,
     highestBid: 550,
     highestBidder: "ALGO999...GHI",
     endTime: new Date(Date.now() + 86400000 * 1), // 1 day from now
-    image: "/placeholder.svg?height=400&width=400",
+    image: "https://res.cloudinary.com/dmebegin1/image/upload/v1743961657/virtual_land_whiebq.jpg",
     creator: "ALGO222...JKL",
     category: "virtual-land",
   },

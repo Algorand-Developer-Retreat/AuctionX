@@ -9,7 +9,7 @@ class AuctionX(ARC4Contract):
     highest_bidder: Account
 
     # Create the app
-    @abimethod(allow_actions=["NoOp"], create="require")
+    @abimethod(allow_actions=["NoOp"])
     def create_application(self, asset_id: Asset, floor_price: UInt64) -> None:
         self.assetid = asset_id.id
         self.floorprice = floor_price
